@@ -4,7 +4,7 @@
 <h2>features</h2>
 
 <ul>
- <li>Image downlaoding</li>
+ <li>Image downloading</li>
  <li>In Memory Caching</li>
  <li>Disk Caching</li>
 </ul>
