@@ -1,7 +1,8 @@
 # Photon
  is an image loading library for Android. Photon is easy,fast and light library 
 
-<h2>features</
+<h2>features</h2>
+
 <ul>
  <li>Image downlaoding</li>
  <li>In Memory Caching</li>
