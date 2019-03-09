@@ -1,32 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.v4.widget.SwipeRefreshLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:background="@color/colorPrimaryDark"
-        tools:context=".MainActivity">
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+
+    >
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/feedList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"
+        />
+
+        <LinearLayout
+                android:id="@+id/emptyView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone"
+        >
+            <ImageView
+                    android:id="@+id/noInternetImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/nointernet"
+            />
+
+            <TextView
+                    android:id="@+id/noInternetText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_internet"
+                    android:textColor="@color/colorPrimary"
+
+            />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 
-    <ImageView
-            android:id="@+id/myimage"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-    />  <ImageView
-            android:id="@+id/myimage1"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-    />  <ImageView
-            android:id="@+id/myimage2"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-    />  <ImageView
-            android:id="@+id/myimage3"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-    />
+</android.support.v4.widget.SwipeRefreshLayout>
 
 
-</LinearLayout>

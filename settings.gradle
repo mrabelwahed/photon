@@ -1,1 +1,1 @@
-include ':app', ':imageloadinglib'
+include ':app', ':photon'

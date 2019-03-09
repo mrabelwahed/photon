@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">OrangeTask</string>
+    <string name="app_name">Photon Library</string>
+    <string name="no_internet">No Internet Connection</string>
 </resources>
