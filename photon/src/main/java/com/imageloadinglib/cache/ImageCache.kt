@@ -10,4 +10,5 @@ interface ImageCache {
 
     fun clear()
 
+
 }

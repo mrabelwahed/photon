@@ -18,7 +18,7 @@ class IntroActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro)
 
-        imageLoader = ImageLoader.getInstance(this)
+        imageLoader = ImageLoader.getInstance(this , 10*1024*1024) //4MiB
 
         imageLoader.displayImage(URL1,image1,R.drawable.place_holder)
 

@@ -7,12 +7,13 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.ImageView
 import com.imageloadinglib.cache.CacheRepository
+import com.imageloadinglib.cache.Config
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.concurrent.Executors
 
-class ImageLoader private constructor(context: Context) {
-    private val cache  = CacheRepository(context)
+class ImageLoader private constructor(context: Context ,  cacheSize :Int) {
+    private val cache  = CacheRepository(context,cacheSize)
     private val executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())
     private val uiHandler = Handler(Looper.getMainLooper())
 
@@ -46,7 +47,8 @@ class ImageLoader private constructor(context: Context) {
     }
 
 
-    fun setImagePlaceHolder(imageview: ImageView, resId:Int)= imageview.setImageResource(resId)
+
+
 
     fun updateImageView(imageview: ImageView, bitmap: Bitmap) {
         uiHandler.post {
@@ -76,10 +78,10 @@ class ImageLoader private constructor(context: Context) {
     companion object {
         private val INSTANCE :ImageLoader? = null
         @Synchronized
-        fun getInstance(context: Context):ImageLoader{
+        fun getInstance(context: Context, cacheSize: Int = Config.defaultCacheSize):ImageLoader{
             return INSTANCE?.let { return INSTANCE }
             ?:run {
-                return ImageLoader(context)
+                return ImageLoader(context , cacheSize)
             }
         }
     }

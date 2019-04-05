@@ -2,14 +2,21 @@ package com.imageloadinglib.cache
 
 import android.graphics.Bitmap
 import android.support.v4.util.LruCache
+import android.util.Log
 
-object MemoryCache : ImageCache {
+class MemoryCache (newMaxSize: Int) :ImageCache {
+
 
     private val cache : LruCache<String, Bitmap>
 
     init {
-        val maxMemory = Runtime.getRuntime().maxMemory() /1024
-        val cacheSize = (maxMemory/4).toInt()
+        var cacheSize : Int
+        if (newMaxSize > Config.maxMemory) {
+            cacheSize = Config.defaultCacheSize
+            Log.d("memory_cache","New value of cache is bigger than maximum cache available on system")
+        } else {
+            cacheSize = newMaxSize
+        }
       cache = object : LruCache<String, Bitmap>(cacheSize) {
           override fun sizeOf(key: String, value: Bitmap): Int {
               return (value.rowBytes)*(value.height)/1024
@@ -28,5 +35,7 @@ object MemoryCache : ImageCache {
     override fun clear() {
         cache.evictAll()
     }
+
+
 
 }
