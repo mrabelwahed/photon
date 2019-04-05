@@ -29,8 +29,7 @@ class FeedAdapter (val context:Context) : RecyclerView.Adapter<FeedAdapter.FeedV
     override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
         holder.name.text = data[position].name
         holder.likeCount.text = data[position].likeCount.toString().plus(" likes")
-        imageLoader.displayImage(data[position].imgUrl,holder.userImage)
-
+        imageLoader.displayImage(data[position].imgUrl,holder.userImage,R.drawable.place_holder)
     }
 
 

@@ -25,10 +25,18 @@
 
 
     <Button
-            android:id="@+id/button"
+            android:id="@+id/listBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Recyclerview"
+            android:text="Recyclerview"  />
+
+    <Button
+            android:id="@+id/clearBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Clear Cache"/>
+
+
 
 
     />

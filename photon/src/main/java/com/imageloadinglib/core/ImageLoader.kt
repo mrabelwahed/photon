@@ -17,7 +17,7 @@ class ImageLoader private constructor(context: Context) {
     private val uiHandler = Handler(Looper.getMainLooper())
 
 
-    fun displayImage(url: String, imageview: ImageView) {
+    fun displayImage(url: String, imageview: ImageView,placeholder:Int) {
 
         var bitmap = cache.get(url)
        bitmap?.let {
@@ -26,11 +26,15 @@ class ImageLoader private constructor(context: Context) {
         }
             ?: run {
                 imageview.tag = url
+                if (placeholder !=null)
+                    imageview.setImageResource(placeholder)
                 executorService.submit {
                     bitmap = downloadImage(url)
                     bitmap?.let {
-                        if (imageview.tag == url)
+                        if (imageview.tag == url){
                             updateImageView(imageview, it)
+                        }
+
                         cache.put(url, it)
                     }
 
@@ -40,6 +44,9 @@ class ImageLoader private constructor(context: Context) {
 
 
     }
+
+
+    fun setImagePlaceHolder(imageview: ImageView, resId:Int)= imageview.setImageResource(resId)
 
     fun updateImageView(imageview: ImageView, bitmap: Bitmap) {
         uiHandler.post {

@@ -20,12 +20,17 @@ class IntroActivity : AppCompatActivity() {
 
         imageLoader = ImageLoader.getInstance(this)
 
-        imageLoader.displayImage(URL1,image1)
+        imageLoader.displayImage(URL1,image1,R.drawable.place_holder)
 
 
-        button.setOnClickListener {
+        listBtn.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
+        }
+
+
+        clearBtn.setOnClickListener {
+            imageLoader.clearcache()
         }
 
 
