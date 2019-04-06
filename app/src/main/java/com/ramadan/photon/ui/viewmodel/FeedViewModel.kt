@@ -17,6 +17,9 @@ val compositeDisposable = CompositeDisposable()
 
 
     fun getFeed(username:String){
+        if (feedMutableLiveData.value !=null){
+            return
+        }
         val dispossable = ApiClient.getFeedSerivce()
             .getFeed(username)
             .map { data -> FeedMapper.transform(data) }

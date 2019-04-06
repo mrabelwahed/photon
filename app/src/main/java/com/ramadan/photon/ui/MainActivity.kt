@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
             feedList.visibility = View.VISIBLE
             emptyView.visibility = View.GONE
             feedViewModel.getFeed(user)
+            swipeRefreshLayout.isRefreshing = false
         } else {
             feedList.visibility = View.GONE
             emptyView.visibility = View.VISIBLE
