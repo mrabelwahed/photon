@@ -28,6 +28,7 @@
   
   <h4> setup maximum cache </h4>
   
+  
    val cacheSize =4194304 //4MiB
    
    val imageLoader = Photon.getInstance(this  , cacheSize)
@@ -35,7 +36,16 @@
   <h4> clear cache </h4>
   
    imageLoader.clearcache()
-
+   
+   <h4>cancel Loading </h4>
+    - to cancel certain image loading task 
+   
+    imageLoader.cancel(url)
+    
+  
+   -to cancel all tasks
+    
+    imageLoader.cancelAll()
 
 <h3>how to add Photon to your Android Project </h3>
 
