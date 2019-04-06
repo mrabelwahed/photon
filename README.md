@@ -13,8 +13,9 @@
 
 <h3>Sample App</h3>
 <div style="display:inline;width:5px;">
-<img src ="https://github.com/mrabelwahed/photon/blob/master/art/device-2019-04-06-202438.png"  width="39%" style="display:inline;">
-<img src ="https://github.com/mrabelwahed/photon/blob/master/art/device-2019-03-09-141320.png" width="39%" style="display:inline;">
+<img src ="https://github.com/mrabelwahed/photon/blob/master/art/device-2019-04-06-203503.png"  width="39%"style="display:inline;">
+<img src ="https://github.com/mrabelwahed/photon/blob/master/art/device-2019-04-06-203423.png" width="39%" 
+       style="display:inline;">
 </div>
 
 <h3>How to use Photon </h3>
