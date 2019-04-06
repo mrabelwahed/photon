@@ -28,7 +28,7 @@
   
   <h4> setup maximum cache </h4>
   
-   val cacheSize =4*1024*1024 //4MiB
+   val cacheSize =4194304 //4MiB
    
    val imageLoader = Photon.getInstance(this  , cacheSize)
    
