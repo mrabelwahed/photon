@@ -4,32 +4,18 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Handler
 import android.os.Looper
-import android.telecom.Call
 import android.widget.ImageView
 import com.imageloadinglib.cache.CacheRepository
 import java.net.HttpURLConnection
 import java.net.URL
-import java.util.concurrent.Callable
 
-class DownloadImageTask(private val url: String,
-                        private val imageView: ImageView,
-                        private val cache: CacheRepository) : Callable<Bitmap?>{
+class DownloadImageTask(
+    private val url: String,
+    private val imageView: ImageView,
+    private val cache: CacheRepository
+) : DownloadTask<Bitmap?>() {
 
-
-    private val uiHandler = Handler(Looper.getMainLooper())
-
-    override fun call(): Bitmap? {
-        val bitmap = downloadImage(url)
-        bitmap?.let {
-            if (imageView.tag == url) {
-                updateImageView(imageView, it)
-            }
-            cache.put(url, it)
-        }
-        return bitmap
-    }
-
-    fun downloadImage(url: String): Bitmap? {
+    override fun download(url: String): Bitmap? {
         var bitmap: Bitmap? = null
         try {
             val url = URL(url)
@@ -39,9 +25,21 @@ class DownloadImageTask(private val url: String,
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
         return bitmap
+    }
 
+
+    private val uiHandler = Handler(Looper.getMainLooper())
+
+    override fun call(): Bitmap? {
+        val bitmap = download(url)
+        bitmap?.let {
+            if (imageView.tag == url) {
+                updateImageView(imageView, it)
+            }
+            cache.put(url, it)
+        }
+        return bitmap
     }
 
     fun updateImageView(imageview: ImageView, bitmap: Bitmap) {

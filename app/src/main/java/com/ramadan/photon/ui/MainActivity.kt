@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import com.imageloadinglib.core.Photon
 import com.ramadan.photon.R
 import com.ramadan.photon.network.NetworkUtil
 import com.ramadan.photon.ui.viewmodel.FeedViewModel
@@ -67,5 +68,9 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
         })
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        Photon.getInstance(this).cancelAll()
+    }
 
 }

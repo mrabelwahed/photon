@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.widget.ImageView
 import com.imageloadinglib.async.DownloadImageTask
+import com.imageloadinglib.async.DownloadTask
 import com.imageloadinglib.cache.CacheRepository
 import com.imageloadinglib.cache.Config
 import java.util.concurrent.Executors
@@ -12,7 +13,6 @@ import java.util.concurrent.Future
 class Photon private constructor(context: Context, cacheSize: Int) {
     private val cache = CacheRepository(context, cacheSize)
     private val executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())
-   // private val mRunningDownloadList = ArrayList<Future<Bitmap?>>()
     private val mRunningDownloadList:HashMap<String,Future<Bitmap?>> = hashMapOf()
 
 
@@ -26,12 +26,12 @@ class Photon private constructor(context: Context, cacheSize: Int) {
                 imageview.tag = url
                 if (placeholder != null)
                     imageview.setImageResource(placeholder)
-                addDownloadTask( url, DownloadImageTask(url , imageview , cache)) }
+                addDownloadImageTask( url, DownloadImageTask(url , imageview , cache)) }
 
     }
 
 
-    fun addDownloadTask(url: String,downloadTask: DownloadImageTask) {
+    fun addDownloadImageTask(url: String,downloadTask: DownloadTask<Bitmap?>) {
         mRunningDownloadList.put(url,executorService.submit(downloadTask))
     }
 
