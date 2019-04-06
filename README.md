@@ -13,16 +13,27 @@
 
 <h3>Sample App</h3>
 <div style="display:inline;width:5px;">
-<img src ="https://github.com/mrabelwahed/photon/blob/master/art/device-2019-03-09-141234.png" width="49%" style="display:inline;">
-<img src ="https://github.com/mrabelwahed/photon/blob/master/art/device-2019-03-09-141320.png" width="49%" style="display:inline;">
+<img src ="https://github.com/mrabelwahed/photon/blob/master/art/device-2019-04-06-202438.png"  width="39%" style="display:inline;">
+<img src ="https://github.com/mrabelwahed/photon/blob/master/art/device-2019-03-09-141320.png" width="39%" style="display:inline;">
 </div>
 
 <h3>How to use Photon </h3>
        
-        val imageLoader = ImageLoader.getInstance(this)
+        val imageLoader = Photon.getInstance(this)
 
-        imageLoader.displayImage(URL1,image1)
+        imageLoader.displayImage(URL1,image1 , R.drawable.place_holder)
 	
+<h3>manage cache </h3>
+  
+  <h4> setup maximum cache </h4>
+  
+   val cacheSize =4*1024*1024 //4MiB
+   
+   val imageLoader = Photon.getInstance(this  , cacheSize)
+   
+  <h4> clear cache </h4>
+  
+   imageLoader.clearcache()
 
 
 <h3>how to add Photon to your Android Project </h3>
@@ -41,7 +52,7 @@ Step 2. Add the dependency
 
 	
 	  dependencies {
-	        implementation 'com.github.mrabelwahed:photon:1.0.0'
+	       implementation 'com.github.mrabelwahed:photon:1.0.1'
 	  }
 	
 	
