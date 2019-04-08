@@ -2,50 +2,43 @@ package com.ramadan.photon.ui
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.imageloadinglib.core.Photon
+import com.ramadan.photon.common.FEED_PARAM
 import com.ramadan.photon.R
 import com.ramadan.photon.network.NetworkUtil
 import com.ramadan.photon.ui.viewmodel.FeedViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
-
+class MainActivity : BaseActivity(), SwipeRefreshLayout.OnRefreshListener {
     private lateinit var feedViewModel: FeedViewModel
     private lateinit var feedAdapter: FeedAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
+    override fun initUI() {
         val linearLayoutmg = LinearLayoutManager(applicationContext)
         val divider = DividerItemDecoration(feedList.context, DividerItemDecoration.VERTICAL)
         feedList.layoutManager = linearLayoutmg
         feedAdapter = FeedAdapter(applicationContext)
         feedList.adapter = feedAdapter
         feedList.addItemDecoration(divider)
-
         swipeRefreshLayout.setOnRefreshListener(this)
 
-        feedViewModel = ViewModelProviders.of(this).get(FeedViewModel::class.java)
-
+        feedViewModel = ViewModelProviders.of(this,viewModelFactory)[FeedViewModel::class.java]
         observeFeed()
-
         swipeRefreshLayout.post {
             swipeRefreshLayout.isRefreshing = true
-            getFeed("wgkJgazE")
+            getFeed(FEED_PARAM)
         }
-
     }
 
+    override fun getLayoutById() = R.layout.activity_main
+
     override fun onRefresh() {
-        getFeed("wgkJgazE")
+        getFeed(FEED_PARAM)
     }
 
     fun getFeed(user: String) {

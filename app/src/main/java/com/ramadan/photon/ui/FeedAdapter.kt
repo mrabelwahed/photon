@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.imageloadinglib.core.Photon
+import com.ramadan.photon.common.LIKE_WORD
 import com.ramadan.photon.R
 import com.ramadan.photon.model.Feed
 import kotlinx.android.synthetic.main.feed_item.view.*
@@ -28,7 +29,7 @@ class FeedAdapter (val context:Context) : RecyclerView.Adapter<FeedAdapter.FeedV
 
     override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
         holder.name.text = data[position].name
-        holder.likeCount.text = data[position].likeCount.toString().plus(" likes")
+        holder.likeCount.text = data[position].likeCount.toString().plus(LIKE_WORD)
         imageLoader.displayImage(data[position].imgUrl,holder.userImage,R.drawable.place_holder)
     }
 

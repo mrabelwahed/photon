@@ -2,40 +2,40 @@ package com.ramadan.photon.ui.viewmodel
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import com.ramadan.photon.common.OBSERVER_ON
+import com.ramadan.photon.common.SUBCRIBER_ON
 import com.ramadan.photon.data.FeedMapper
 import com.ramadan.photon.model.Feed
-import com.ramadan.photon.network.ApiClient
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
+import com.ramadan.photon.repository.FeedRepository
+import io.reactivex.Scheduler
+import javax.inject.Inject
+import javax.inject.Named
 
-class FeedViewModel :ViewModel(){
+class FeedViewModel @Inject constructor(
+    private val feedRepository: FeedRepository,
+    @param:Named(SUBCRIBER_ON) private val subscriberOn: Scheduler,
+    @param:Named(OBSERVER_ON) private val observerOn: Scheduler
+) : BaseViewModel() {
 
-val compositeDisposable = CompositeDisposable()
     val feedMutableLiveData = MutableLiveData<List<Feed>>()
 
 
-    fun getFeed(username:String){
-        if (feedMutableLiveData.value !=null){
+    fun getFeed(username: String) {
+        if (feedMutableLiveData.value != null) {
             return
         }
-        val dispossable = ApiClient.getFeedSerivce()
+        val dispossable = feedRepository
             .getFeed(username)
             .map { data -> FeedMapper.transform(data) }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(subscriberOn)
+            .observeOn(observerOn)
             .subscribe {
                 feedMutableLiveData.value = it
             }
         compositeDisposable.add(dispossable)
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        compositeDisposable.clear()
-    }
 
-    fun getLiveData() : LiveData<List<Feed>> = feedMutableLiveData
+    fun getLiveData(): LiveData<List<Feed>> = feedMutableLiveData
 
 }

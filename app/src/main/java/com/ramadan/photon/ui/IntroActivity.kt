@@ -1,39 +1,27 @@
 package com.ramadan.photon.ui
 
 import android.content.Intent
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import com.imageloadinglib.core.Photon
+import com.ramadan.photon.common.CACHE_SIZE
+import com.ramadan.photon.common.URL1
 import  com.ramadan.photon.R
 import kotlinx.android.synthetic.main.activity_intro.*
 
-class IntroActivity : AppCompatActivity() {
-    companion object {
-        val URL1 = "https://i.pinimg.com/originals/93/09/77/930977991c52b48e664c059990dea125.jpg"
-    }
-
+class IntroActivity : BaseActivity() {
     private lateinit var imageLoader:Photon
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_intro)
-
-        imageLoader = Photon.getInstance(this , 10*1024*1024) //4MiB
-
+    override fun initUI() {
+        imageLoader = Photon.getInstance(this , CACHE_SIZE) //4MiB
         imageLoader.displayImage(URL1,image1,R.drawable.place_holder)
-
-
         listBtn.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
         }
-
-
         clearBtn.setOnClickListener {
             imageLoader.clearcache()
         }
-
-
-
     }
+
+    override fun getLayoutById() = R.layout.activity_intro
+
 }
