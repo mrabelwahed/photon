@@ -8,7 +8,7 @@ const val FEED_PARAM = "wgkJgazE"
 
 const val  LIKE_WORD ="likes"
 
-const val  BASE_URL = "http://pastebin.com/"
+const val  BASE_URL = "https://pastebin.com/"
 
 const val USER = "user"
 

@@ -9,15 +9,12 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Named
 
 @Module
-class RxModule {
-
+class TestRxJavaModule {
     @Provides
     @Named(SUBCRIBER_ON)
-    fun provideSubscriberOn() = Schedulers.io()
+    fun provideSubscriberOn() = Schedulers.trampoline()
 
     @Provides
     @Named(OBSERVER_ON)
-    fun providesObserverOn() = AndroidSchedulers.mainThread()
-
-
+    fun providesObserverOn() =  Schedulers.trampoline()
 }

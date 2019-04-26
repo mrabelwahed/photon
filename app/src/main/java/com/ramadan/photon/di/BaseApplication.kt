@@ -13,7 +13,6 @@ open class BaseApplication : Application() {
     protected  open fun initDagger() = DaggerBaseComponent.builder()
             .networkModule(NetworkModule(BASE_URL))
             .repositoryModule(RepositoryModule())
-            .rxModule(RxModule())
             .build()
 
 }

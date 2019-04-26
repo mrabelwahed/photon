@@ -10,7 +10,7 @@ import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
 
-class DiskCache private constructor(context: Context) : ImageCache {
+class DiskCache private constructor(val context: Context) : ImageCache {
 
     private var cache: DiskLruCache = DiskLruCache.open(context.cacheDir, 1, 1, 10 * 1024 * 1024)
 
@@ -50,8 +50,12 @@ class DiskCache private constructor(context: Context) : ImageCache {
     }
 
     override fun clear() {
-        cache.delete()
+         cache.delete()
+         cache = DiskLruCache.open(context.cacheDir, 1, 1, 10 * 1024 * 1024)
+
     }
+
+
 
     private fun writeBitmapToFile(bitmap: Bitmap, editor: DiskLruCache.Editor): Boolean {
         var out: OutputStream? = null

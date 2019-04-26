@@ -8,14 +8,12 @@ import com.ramadan.photon.data.FeedMapper
 import com.ramadan.photon.model.Feed
 import com.ramadan.photon.repository.FeedRepository
 import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 import javax.inject.Named
 
-class FeedViewModel @Inject constructor(
-    private val feedRepository: FeedRepository,
-    @param:Named(SUBCRIBER_ON) private val subscriberOn: Scheduler,
-    @param:Named(OBSERVER_ON) private val observerOn: Scheduler
-) : BaseViewModel() {
+class FeedViewModel @Inject constructor(private val feedRepository: FeedRepository) : BaseViewModel() {
 
     val feedMutableLiveData = MutableLiveData<List<Feed>>()
 
@@ -27,8 +25,8 @@ class FeedViewModel @Inject constructor(
         val dispossable = feedRepository
             .getFeed(username)
             .map { data -> FeedMapper.transform(data) }
-            .subscribeOn(subscriberOn)
-            .observeOn(observerOn)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 feedMutableLiveData.value = it
             }

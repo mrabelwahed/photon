@@ -22,6 +22,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
@@ -62,5 +63,10 @@ dependencies {
     compileOnly 'javax.annotation:jsr250-api:1.0'
     kaptTest "com.google.dagger:dagger:$dagger_version"
     testImplementation "com.google.dagger:dagger:$dagger_version"
+    // MOCK WEB SERVER
+    testImplementation 'com.squareup.okhttp:mockwebserver:2.7.5'
+    // CORE TESTING
+    testImplementation 'android.arch.core:core-testing:1.1.1'
+
 
 }
