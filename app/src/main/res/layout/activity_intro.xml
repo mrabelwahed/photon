@@ -7,7 +7,7 @@
         android:orientation="vertical"
         android:padding="16dp"
         android:gravity="center"
-        tools:context="com.ramadan.photon.ui.IntroActivity">
+        tools:context="com.photon.ui.IntroActivity">
 
     <LinearLayout
                   android:layout_weight="1"
