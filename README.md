@@ -1,7 +1,6 @@
 # Photon
  is an image loading library for Android. Photon is easy,fast and light library 
 
-<a href="https://www.buymeacoffee.com/ramadan" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
 
 <h2>features</h2>
 
@@ -68,7 +67,7 @@ Step 2. Add the dependency
 	       implementation 'com.github.mrabelwahed:photon:1.0.3'
 	  }
 	
-	
+	<a href="https://www.buymeacoffee.com/ramadan" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
 	
 <h3>How to contribute </h3>	
 <ul>
