@@ -67,7 +67,7 @@ Step 2. Add the dependency
 	       implementation 'com.github.mrabelwahed:photon:1.0.3'
 	  }
 	
-	<a href="https://www.buymeacoffee.com/ramadan" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
+
 	
 <h3>How to contribute </h3>	
 <ul>
@@ -75,3 +75,6 @@ Step 2. Add the dependency
 <li>create branch and add feature or fix bug</li>
 <li> create pull request </li>
 </ul>
+
+
+	<a href="https://www.buymeacoffee.com/ramadan" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
